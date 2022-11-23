@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import cross_icon from "./../cross_icon.png";
 import { Link } from "react-router-dom";
+import apiUrls from "./../apiUrls";
 const UrlDetailsPage = () => {
   const [fullUrl, setFullUrl] = useState("");
   const [hitCount, setHitCount] = useState("");
@@ -12,7 +13,7 @@ const UrlDetailsPage = () => {
   let { id } = useParams();
   console.log(id);
   const fetchUrl = async () => {
-    const { data } = await axios.post("http://localhost:5000/api/short/get", {
+    const { data } = await axios.post(apiUrls.getLink, {
       shortCode: id,
     });
 

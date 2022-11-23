@@ -4,18 +4,16 @@ import axios from "axios";
 import cross_icon from "./../cross_icon.png";
 import Header from "./../components/Header";
 import { Link } from "react-router-dom";
+import apiUrls from "./../apiUrls";
 const RedirectPage = () => {
   const [error, setError] = useState("");
   let { id } = useParams();
   console.log(id);
 
   const fetchUrl = async () => {
-    const { data } = await axios.post(
-      "http://localhost:5000/api/short/hit-link",
-      {
-        shortCode: id,
-      }
-    );
+    const { data } = await axios.post(apiUrls.hitLink, {
+      shortCode: id,
+    });
 
     if (data.status) {
       window.location.href = data.fullUrl;

@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import copy from "copy-to-clipboard";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import apiUrls from "./../apiUrls";
 const HomePage = () => {
   const [link, setLink] = useState("");
   const [shortUrl, setShortUrl] = useState("");
@@ -10,12 +11,9 @@ const HomePage = () => {
 
   const generateShortLink = async (e) => {
     e.preventDefault();
-    const { data } = await axios.post(
-      "http://localhost:5000/api/short/create",
-      {
-        linkUrl: link,
-      }
-    );
+    const { data } = await axios.post(apiUrls.create, {
+      linkUrl: link,
+    });
     if (data.status) {
       toast.success("Short Link Generate!");
       setShortUrl(data.shortId);
