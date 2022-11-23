@@ -1,7 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
-const { shortUrlCreate } = require("./../controllers/shortUrlControllers");
+const {
+  shortUrlCreate,
+  shortUrlHitLink,
+  shortUrlGet,
+} = require("./../controllers/shortUrlControllers");
 
 router.get("/", (req, res) => {
   res.send({
@@ -10,6 +14,8 @@ router.get("/", (req, res) => {
   });
 });
 
-router.get("/short/create", shortUrlCreate);
+router.post("/short/create", shortUrlCreate);
+router.post("/short/hit-link", shortUrlHitLink);
+router.post("/short/get", shortUrlGet);
 
 module.exports = router;
